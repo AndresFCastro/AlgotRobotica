@@ -1,37 +1,37 @@
 import math
 
-print("=== CALCULO DE VOLUMENES ===")
+print("CALCULO DE VOLUMENES")
 print("1. Prisma")
 print("2. Piramide")
 print("3. Cono truncado")
 print("4. Cilindro")
 
-op = int(input("Seleccione una opcion: "))
+opcion = int(input("Seleccione una opcion: "))
 
-if op == 1:
-    Ab = float(input("Ingrese el area de la base: "))
-    h = float(input("Ingrese la altura: "))
-    V = Ab * h
-    print(f"Volumen del prisma: {V:.2f}")
+if opcion == 1:
+    Area_base = float(input("Ingrese el area de la base: "))
+    Altura = float(input("Ingrese la altura: "))
+    Volumen = Area_base * Altura
+    print(f"Volumen del prisma: {Volumen:.2f}")
 
-elif op == 2:
-    Ab = float(input("Ingrese el area de la base: "))
-    h = float(input("Ingrese la altura: "))
-    V = (Ab * h) / 3
-    print(f"Volumen de la piramide: {V:.2f}")
+elif opcion == 2:
+    Area_base = float(input("Ingrese el area de la base: "))
+    Altura = float(input("Ingrese la altura: "))
+    Volumen = (Area_base * Altura) / 3
+    print(f"Volumen de la piramide: {Volumen:.2f}")
 
-elif op == 3:
-    R = float(input("Ingrese el radio mayor: "))
-    r = float(input("Ingrese el radio menor: "))
-    h = float(input("Ingrese la altura: "))
-    V = (1/3) * math.pi * h * (R**2 + R*r + r**2)
-    print(f"Volumen del cono truncado: {V:.2f}")
+elif opcion == 3:
+    Radio_grande = float(input("Ingrese el radio mayor: "))
+    Radio_menor = float(input("Ingrese el radio menor: "))
+    Altura = float(input("Ingrese la altura: "))
+    Volumen = (1/3) * math.pi * Altura * (Radio_grande**2 + Radio_grande*Radio_menor + Radio_menor**2)
+    print(f"Volumen del cono truncado: {Volumen:.2f}")
 
-elif op == 4:
-    r = float(input("Ingrese el radio: "))
-    h = float(input("Ingrese la altura: "))
-    V = math.pi * r**2 * h
-    print(f"Volumen del cilindro: {V:.2f}")
+elif opcion == 4:
+    Radio = float(input("Ingrese el radio: "))
+    Altura = float(input("Ingrese la altura: "))
+    Volumen = math.pi * Radio**2 * Altura
+    print(f"Volumen del cilindro: {Volumen:.2f}")
 
 else:
     print("Opcion no valida.")
