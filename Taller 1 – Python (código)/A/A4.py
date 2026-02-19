@@ -8,5 +8,10 @@ temperatura = 50  # °C
 def resistencia_pt100(T):
     return R0 * (1 + A*T + B*(T**2))
 
+# Llamar la función
+resistencia = resistencia_pt100(temperatura)
+
+# Imprimir resultado
+print("La resistencia para", temperatura, "°C es:", round(resistencia, 4), "Ohmios")
 
 

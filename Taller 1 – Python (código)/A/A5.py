@@ -30,4 +30,20 @@ def rotacion_z(angulo):
 
 angulo = 30  # grados
 
+# Calcular matrices
+Rx = rotacion_x(angulo)
+Ry = rotacion_y(angulo)
+Rz = rotacion_z(angulo)
 
+# Imprimir resultados
+print("Matriz de rotación en X:")
+for fila in Rx:
+    print([round(valor, 4) for valor in fila])
+
+print("\nMatriz de rotación en Y:")
+for fila in Ry:
+    print([round(valor, 4) for valor in fila])
+
+print("\nMatriz de rotación en Z:")
+for fila in Rz:
+    print([round(valor, 4) for valor in fila])

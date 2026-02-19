@@ -1,7 +1,7 @@
 vector1 = [2, 4, 6]
 vector2 = [1, 3, 5]
 
-def suma_vectores(vector1, vector2):
+def suma_vectores(v1, v2):
     return [a + b for a, b in zip(v1, v2)]
 
 def resta_vectores(v1, v2):
@@ -25,9 +25,9 @@ def producto_cruz(v1, v2):
 
 
 # Mostrar resultados
-print("Suma:", suma_vectores)
-print("Resta:", resultado_resta)
-print("Multiplicación:", resultado_multiplicacion)
-print("División:", resultado_division)
-print("Producto Punto:", resultado_punto)
-print("Producto Cruz:", resultado_cruz)
+print("Suma:", suma_vectores(vector1, vector2))
+print("Resta:", resta_vectores(vector1, vector2))
+print("Multiplicación:", multiplicacion_elemento(vector1, vector2))
+print("División:", division_elemento(vector1, vector2))
+print("Producto Punto:", producto_punto(vector1, vector2))
+print("Producto Cruz:", producto_cruz(vector1, vector2))

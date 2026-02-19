@@ -44,7 +44,7 @@ def division_matrices(m1, m2):
 
 
 # Mostrar resultados
-print("Suma:", resultado_suma)
-print("Resta:", resultado_resta)
-print("Multiplicación:", resultado_multiplicacion)
-print("División:", resultado_division)
+print("Suma:", suma_matrices(A, B))
+print("Resta:", resta_matrices(A, B))
+print("Multiplicación:", multiplicacion_matrices(A, B))
+print("División:", division_matrices(A, B))
