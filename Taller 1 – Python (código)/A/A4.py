@@ -1,17 +1,18 @@
 R0 = 100  # Ohmios a 0°C
 A = 3.9083e-3
 B = -5.775e-7
+C = -4.18e-12
+resistencia = 0
 
 
-temperatura = 50  # °C
+T = 100  # °C
 
-def resistencia_pt100(T):
-    return R0 * (1 + A*T + B*(T**2))
-
-# Llamar la función
-resistencia = resistencia_pt100(temperatura)
+if T < 0:
+    resistencia = R0 * (1 + A*T + B*(T**2) +C*(T**3)*(T-100))
+else:
+     resistencia = R0 * (1 + A*T + B*(T**2))
 
 # Imprimir resultado
-print("La resistencia para", temperatura, "°C es:", round(resistencia, 4), "Ohmios")
+print("La resistencia para", T, "°C es:", round(resistencia, 4), "Ohmios")
 
 
