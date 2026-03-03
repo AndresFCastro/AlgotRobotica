@@ -3,38 +3,36 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 #Leer la imagen
-imagen = cv2.imread("imagen_logos.jpg")
+imagen = cv2.imread("Imagen_1.jpg")
+imagen1 = cv2.imread("Imagen_2.jpg")
 
-#Convertir de BGR a RGB (para mostrar con matplotlib)
-imagen_rgb = cv2.cvtColor(imagen, cv2.COLOR_BGR2RGB)
-
-#Convertir a escala de grises
-gris = cv2.cvtColor(imagen_rgb, cv2.COLOR_BGR2GRAY)
 
 # Detección de bordes
-bordes = cv2.Canny(gris, 50, 150)
+bordes = cv2.Canny(imagen, 50, 150)
+bordes1 = cv2.Canny(imagen1, 50, 150)
 
-# Obtener posiciones donde hay borde (valor distinto de 0)
-coordenadas = np.column_stack(np.where(bordes > 0))
-print(coordenadas) # Imprimir coordenadas en consola
+#Encontrar contornos
+contornos, jerarquia = cv2.findContours(bordes, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+cv2.drawContours(imagen, contornos, -1, (255,0,0), 2)
+print("Coordenadas contornos Imagen 1: ",contornos)
+
+contornos1, jerarquia1 = cv2.findContours(bordes1, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+cv2.drawContours(imagen1, contornos1, -1, (0,255,0), 4)
+print("Coordenadas contornos Imagen 2: ",contornos1)
 
 
+
+#Graficamos
 plt.figure(figsize=(10,6))
 
-plt.subplot(1,3,1)
-plt.imshow(imagen_rgb)
-plt.title("Imagen Original")
+plt.subplot(1,2,1)
+plt.imshow(imagen)
+plt.title("Imagen 1")
 plt.axis("off")
 
-plt.subplot(1,3,2)
-plt.imshow(gris, cmap="gray")
-plt.title("Escala de Grises")
+plt.subplot(1,2,2)
+plt.imshow(imagen1)
+plt.title("Imagen 2")
 plt.axis("off")
-
-plt.subplot(1,3,3)
-plt.imshow(bordes, cmap="gray")
-plt.title("Bordes")
-plt.axis("off")
-
 
 plt.show()

@@ -1,34 +1,36 @@
+import numpy as np
 import matplotlib.pyplot as plt
 from scipy import signal
 
-print("Armemos una función de transferencia de segundo orden")
-print("G(s)=(1)/(as^2+bs+c)")
+K = float(input("Ingrese la ganancia K: "))
+wn = float(input("Ingrese la frecuencia natural Wn: "))
+zeta = float(input("Ingrese el factor de amortiguamiento ζ: "))
 
-# Ingreso de coeficientes
-a = float(input("Ingrese coeficiente a: "))
-b = float(input("Ingrese coeficiente b: "))
-c = float(input("Ingrese coeficiente c: "))
 
-# Identificación de la respúesta del sistema por medio del delta
-delta = b**2 - 4*a*c
+numerador = [K * wn**2] #Numerador de la función 
+denominador = [1, 2*zeta*wn, wn**2] #Denominador de la función
 
-if delta > 0:
-    print("Sistema Sobreamortiguado")
-elif delta == 0:
-    print("Sistema Críticamente Amortiguado")
+sistema = signal.TransferFunction(numerador, denominador) #Utilizamos funcion de spcipy para formar la funcion de transferencia
+
+Ts = 4/(zeta*wn)
+t = np.linspace(0, 2*Ts, 1000)
+
+
+t, y = signal.step(sistema, T=t) #Sometemos el sistema a un escalon
+
+#Identificar el tipo de respuesta
+if zeta < 1:
+    tipo = "Subamortiguado"
+elif zeta == 1:
+    tipo = "Críticamente amortiguado"
 else:
-    print("Sistema Subamortiguado")
+    tipo = "Sobreamortiguado"
 
-# Función de transferencia
-num = [1]
-den = [a, b, c]
-system = signal.TransferFunction(num, den)
+print("Tipo de sistema:", tipo)
 
-# Respuesta al escalón
-t, y = signal.step(system)  # Usamos la libreria Scipy para someter el sistema a un escalon y compramos con respecto al tiempo
 
 plt.plot(t, y)
-plt.title("Respuesta Sistema de Segundo Orden")
+plt.title(f"Respuesta del sistema ")
 plt.xlabel("Tiempo")
 plt.ylabel("Salida")
 plt.grid()
