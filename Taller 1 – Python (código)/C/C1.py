@@ -5,21 +5,24 @@ import matplotlib.pyplot as plt
 R0 = 100
 A = 3.9083e-3
 B = -5.775e-7
-C = -4.18e-12
+C = -4.183e-12
 
 # Rango de temperatura
-T = np.linspace(-200, 0, 500)
-T1 = np.linspace(0, 200, 200)
+T = np.linspace(-200, 200, 400)
+R = []
 
-# Ecuación PT100
-Rpositivo = R0 * (1 + A*T + B*(T**2)) #Hallar resistencia respecto a la temperatura
-Rnegativo = R0 * (1 + A*T1 + B*(T1**2) + C *(T1**3)*(T1-100)) #Hallar resistencia respecto a la temperatura negativo
+# Cálculo con las dos ecuaciones
+for t in T:
+    if t >= 0:
+        Rt = R0 * (1 + A*t + B*t**2)
+    else:
+        Rt = R0 * (1 + A*t + B*t**2 + C*(t-100)*t**3)
+    R.append(Rt)
 
-
-
-plt.plot( T, Rpositivo,Rnegativo)
-plt.title("Funcionamiento del Sensor PT100")
+# Gráfica
+plt.plot(T, R)
+plt.title("Curva Sensor PT100 (-200°C a 200°C)")
 plt.xlabel("Temperatura (°C)")
-plt.ylabel("Resistencia (Ohms)")
+plt.ylabel("Resistencia (Ohm)")
 plt.grid()
 plt.show()
